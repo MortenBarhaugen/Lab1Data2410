@@ -1,8 +1,21 @@
 def jainsall2(bw):
     xlist = bw
-    xres = [eval(i) for i in xlist]
+    xres = []
+
+
+    for i in xlist:
+        streng = 'Kbps'
+        if(streng in i):
+            temp = eval(i[0])
+            temp = temp/1000
+            xres.append(temp)
+        else:
+            temp = i[0]
+            xres.append(eval(temp))
+
     xlist2 = []
     xsum = 0
+
     for i in xres:
         xsum += i
         xlist2.append(i**2)
@@ -21,12 +34,8 @@ bw = []
 with open("data2.txt") as file_name:
     for line in file_name:
         #print(line.split())
-        if line.split()[1] == "Kbps":
-            bw.append(int(line.split()[0]/1024))
-        elif line.split()[1] == "Mbps":
-            bw.append(line.split()[0])
-
-        
+        #bw.append(line.split()[0])
+        bw.append(line.split())
     
 print(bw)
 jainsall2(bw)
